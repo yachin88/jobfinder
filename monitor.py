@@ -14,6 +14,18 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 STATE_FILE = "state.json"
 URLS_FILE = "urls.txt"
 
+# Ei keyword gulor jekono ekta link text-e thakle shetake "job related" dhora hobe.
+# Notun keyword lagle ekhane add koro.
+JOB_KEYWORDS = [
+    "নিয়োগ", "চাকরি", "শূন্যপদ", "নিয়োগপত্র", "নিয়োগ বিজ্ঞপ্তি",
+    "recruitment", "vacancy", "vacancies", "job circular",
+    "walk-in", "walk in interview", "appointment", "hiring",
+]
+
+def is_job_related(text):
+    lower = text.lower()
+    return any(keyword.lower() in lower for keyword in JOB_KEYWORDS)
+
 def load_urls():
     with open(URLS_FILE, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip() and not line.startswith("#")]
@@ -84,8 +96,9 @@ def main():
 
             if previous_links:
                 new_items = current_links - previous_links
-                if new_items:
-                    new_findings[url] = sorted(new_items)
+                job_items = [item for item in new_items if is_job_related(item.split(" | ")[0])]
+                if job_items:
+                    new_findings[url] = sorted(job_items)
             else:
                 print(f"First run for {url}, saving baseline ({len(current_links)} links).")
 
@@ -99,7 +112,7 @@ def main():
     save_state(state)
 
     if new_findings:
-        body_lines = ["Notun update paoa gese:\n"]
+        body_lines = ["Notun job circular paoa gese:\n"]
         for url, items in new_findings.items():
             body_lines.append(f"\n== {url} ==")
             for item in items[:20]:
