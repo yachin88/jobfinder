@@ -121,11 +121,6 @@ https://dncsouth.chittagong.gov.bd/
 https://ntmc.gov.bd/
 https://portal.ntmc.gov.bd/
 https://ansarvdp.gov.bd/
-https://ansarvdp.gov.bd/pages/static-pages/6922de69933eb65569e1a755
-https://ansarvdp.gov.bd/pages/static-pages/6922dd61933eb65569e14d0b
-https://ansarvdp.gov.bd/pages/static-pages/6922e09f933eb65569e27e07
-https://ansarvdp.gov.bd/pages/static-pages/6922de54933eb65569e19e95
-https://ansarvdp.gov.bd/pages/static-pages/6922dbbd933eb65569e0c365
 https://dmp.gov.bd/
 https://cmp.gov.bd/
 https://kmp.gov.bd/
